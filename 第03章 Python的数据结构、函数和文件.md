@@ -1124,6 +1124,8 @@ return_value = f()
 
 这里的return_value将会是一个含有3个返回值的三元元组。此外，还有一种非常具有吸引力的多值返回方式——返回字典：
 
+> 返回多个值可以通过返回元组或者返回字典，建议返回字典
+
 ```python
 def f():
     a = 5
@@ -1207,6 +1209,8 @@ Out[175]:
 
 还可以将函数用作其他函数的参数，比如内置的map函数，它用于在一组数据上应用一个函数：
 
+> map函数，函数也是对象，可以有函数数组，可以使其他变量f=当前函数对象然后f(x)
+
 ```python
 In [176]: for x in map(remove_punctuation, states):
    .....:     print(x)
@@ -1222,6 +1226,8 @@ West virginia
 ## 匿名（lambda）函数
 
 Python支持一种被称为匿名的、或lambda函数。它仅由单条语句组成，该语句的结果就是返回值。它是通过lambda关键字定义的，这个关键字没有别的含义，仅仅是说“我们正在声明的是一个匿名函数”。
+
+> lambda函数可以和map连用，提供一种方便的定义简单函数的方法，map(x,lambda x: x * 2)，对x数组中的每个数字，返回 * 2之后的结果
 
 ```python
 def short_function(x):
@@ -1240,7 +1246,7 @@ ints = [4, 0, 1, 5, 6]
 apply_to_list(ints, lambda x: x * 2)
 ```
 
-虽然你可以直接编写[x *2for x in ints]，但是这里我们可以非常轻松地传入一个自定义运算给apply_to_list函数。
+虽然你可以直接编写`[x *2for x in ints]`，但是这里我们可以非常轻松地传入一个自定义运算给apply_to_list函数。
 
 再来看另外一个例子。假设有一组字符串，你想要根据各字符串不同字母的数量对其进行排序：
 
@@ -1249,6 +1255,8 @@ In [177]: strings = ['foo', 'card', 'bar', 'aaaa', 'abab']
 ```
 
 这里，我们可以传入一个lambda函数到列表的sort方法：
+
+> lambda函数，匿名函数可以作为key或者 map中的函数使用，lambda返回的是一个匿名函数对象
 
 ```python
 In [178]: strings.sort(key=lambda x: len(set(list(x))))
@@ -1276,6 +1284,8 @@ add_five = lambda y: add_numbers(5, y)
 
 add_numbers的第二个参数称为“柯里化的”（curried）。这里没什么特别花哨的东西，因为我们其实就只是定义了一个可以调用现有函数的新函数而已。内置的functools模块可以用partial函数将此过程简化：
 
+> 使用以前的函数生成新的函数，，，，python真的太强大了，partial
+
 ```python
 from functools import partial
 add_five = partial(add_numbers, 5)
@@ -1283,7 +1293,7 @@ add_five = partial(add_numbers, 5)
 
 ## 生成器
 
-能以一种一致的方式对序列进行迭代（比如列表中的对象或文件中的行）是Python的一个重要特点。这是通过一种叫做迭代器协议（iterator protocol，它是一种使对象可迭代的通用方式）的方式实现的，一个原生的使对象可迭代的方法。比如说，对字典进行迭代可以得到其所有的键：
+能以一种一致的方式对序列进行迭代（比如列表中的对象或文件中的行）是Python的一个重要特点。这是通过一种叫做`迭代器协议`（iterator protocol，它是一种使对象可迭代的通用方式）的方式实现的，一个原生的使对象可迭代的方法。比如说，对字典进行迭代可以得到其所有的键：
 
 ```python
 In [180]: some_dict = {'a': 1, 'b': 2, 'c': 3}
@@ -1297,6 +1307,8 @@ c
 
 当你编写for key in some_dict时，Python解释器首先会尝试从some_dict创建一个迭代器：
 
+> 使用iter从一个可迭代对象中获得迭代器
+
 ```python
 In [182]: dict_iterator = iter(some_dict)
 
@@ -1304,7 +1316,7 @@ In [183]: dict_iterator
 Out[183]: <dict_keyiterator at 0x7fbbd5a9f908>
 ```
 
-迭代器是一种特殊对象，它可以在诸如for循环之类的上下文中向Python解释器输送对象。大部分能接受列表之类的对象的方法也都可以接受任何可迭代对象。比如min、max、sum等内置方法以及list、tuple等类型构造器：
+`迭代器是一种特殊对象，它可以在诸如for循环之类的上下文中向Python解释器输送对象`。大部分能接受列表之类的对象的方法也都可以接受任何可迭代对象。比如min、max、sum等内置方法以及list、tuple等类型构造器：
 
 ```python
 In [184]: list(dict_iterator)
@@ -1331,6 +1343,8 @@ Out[187]: <generator object squares at 0x7fbbd5ab4570>
 
 直到你从该生成器中请求元素时，它才会开始执行其代码：
 
+> 好吧，这个不知道可以用在哪
+
 ```python
 In [188]: for x in gen:
    .....:     print(x, end=' ')
@@ -1341,6 +1355,8 @@ Generating squares from 1 to 100
 ## 生成器表达式
 
 另一种更简洁的构造生成器的方法是使用生成器表达式（generator expression）。这是一种类似于列表、字典、集合推导式的生成器。其创建方式为，把列表推导式两端的方括号改成圆括号：
+
+> [xx for xx in xx]生成列表，(xx for xx in xx)生成迭代器
 
 ```python
 In [189]: gen = (x ** 2 for x in range(100))
@@ -1358,7 +1374,7 @@ def _make_gen():
 gen = _make_gen()
 ```
 
-生成器表达式也可以取代列表推导式，作为函数参数：
+`生成器表达式也可以取代列表推导式`，作为函数参数：
 
 ```python
 In [191]: sum(x ** 2 for x in range(100))
@@ -1488,6 +1504,8 @@ finally:
 
 这里，文件处理f总会被关闭。相似的，你可以用else让只在try部分成功的情况下，才执行代码：
 
+> else ，finally，元组包含多个异常，什么都不写捕获所有异常
+
 ```python
 f = open(path, 'w')
 
@@ -1545,7 +1563,7 @@ In [207]: path = 'examples/segismundo.txt'
 In [208]: f = open(path)
 ```
 
-默认情况下，文件是以只读模式（'r'）打开的。然后，我们就可以像处理列表那样来处理这个文件句柄f了，比如对行进行迭代：
+默认情况下，文件是以只读模式（'r'）打开的。然后，我们就可以像处理列表那样来处理这个文件句柄f了，比如对`行`进行迭代：
 
 ```python
 for line in f:
@@ -1696,6 +1714,12 @@ Out[233]: b'Sue\xc3\xb1a el '
 
 取决于文本的编码，你可以将字节解码为str对象，但只有当每个编码的Unicode字符都完全成形时才能这么做：
 
+> Unicode编码，编码方式之一，UTF-8是Unicode编码的一种进化
+>
+> 编码encode：真实字符——>二进制串(原来你才是码)
+>
+> 解码decode：二进制串——>真实字符
+
 ```python
 In [234]: data.decode('utf8')
 Out[234]: 'Sueña el '
@@ -1723,7 +1747,7 @@ In [238]: with open(sink_path, encoding='iso-8859-1') as f:
 Sueña el r
 ```
 
-注意，不要在二进制模式中使用seek。如果文件位置位于定义Unicode字符的字节的中间位置，读取后面会产生错误：
+注意，`不要在二进制模式中使用seek`。如果文件位置位于定义Unicode字符的字节的中间位置，读取后面会产生错误：
 
 ```python
 In [240]: f = open(path)
