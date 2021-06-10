@@ -161,7 +161,7 @@ a=7, b=8, c=9
 
 Python最近新增了更多高级的元组拆分功能，允许从元组的开头“摘取”几个元素。它使用了特殊的语法``*rest``，这也用在函数签名中以抓取任意长度列表的位置参数：
 
-> rest 也可以换成别的名字，如*c，语法应该和正则表达式有关系
+> rest 也可以换成别的名字，如*c，语法应该借鉴了正则表达式？
 
 ```python
 In [29]: values = 1, 2, 3, 4, 5
@@ -402,7 +402,7 @@ In [74]: seq[1:5]
 Out[74]: [2, 3, 7, 5]
 ```
 
-切片也可以被序列赋值：
+`切片也可以被序列赋值`：
 
 > 以前没注意过
 
@@ -511,7 +511,11 @@ Out[88]: [' ', 'a', 'c', 'e', 'e', 'h', 'o', 'r', 'r', 's']
 
 ### zip函数
 
-``zip``可以将多个列表、元组或其它序列`成对组合`成一个`元组`列表：
+``zip``可以将多个列表、元组或其它序列`成对组合`成一个`元组列表`：
+
+> 用于迭代的时候，可以一次迭代多个集合，挺好的
+>
+> 返回n元元组列表
 
 ```python
 In [89]: seq1 = ['foo', 'bar', 'baz']
@@ -669,7 +673,7 @@ In [120]: d1
 Out[120]: {'a': 'some value', 'b': 'foo', 7: 'an integer', 'c': 12}
 ```
 
-``update``方法是原地改变字典，因此任何传递给``update``的键的旧的值都会被舍弃。
+``update``方法是`原地改变字典`，因此任何传递给``update``的键的旧的值都会被舍弃。
 
 > 如果update方法的键值和以前的有冲突，以前的会被舍弃
 
@@ -685,7 +689,7 @@ for key, value in zip(key_list, value_list):
     mapping[key] = value
 ```
 
-因为字典本质上是`2元元组`的集合，dict可以接受2元元组的列表：
+因为字典本质上是`2元元组`的集合，dict可以接受`2元元组的列表`：
 
 ```python
 In [121]: mapping = dict(zip(range(5), reversed(range(5))))
@@ -709,7 +713,7 @@ else:
 
 因此，dict的方法get和pop可以取默认值进行返回，上面的if-else语句可以简写成下面：
 
-> 用get获取值
+> 用get获取值，可以设定默认值
 
 ```python
 value = some_dict.get(key, default_value)
@@ -744,7 +748,7 @@ for word in words:
 
 ``collections``模块有一个很有用的类，``defaultdict``，它可以进一步简化上面。传递类型或函数以生成每个位置的默认值：
 
-> 指定字典中值的类型为list型，应该挺常用的吧吧
+> `by_letter = defaultdict(list)`指定字典中值的类型为list型，应该挺常用的吧吧
 
 ```python
 from collections import defaultdict
@@ -855,6 +859,8 @@ Out[146]: {3, 4, 5}
 
 与字典类似，`集合元素通常都是不可变的`。要获得类似列表的元素，必须转换成元组：
 
+> 集合元素不可变
+
 ```python
 In [147]: my_data = [1, 2, 3, 4]
 
@@ -878,7 +884,7 @@ Out[152]: True
 
 集合的内容相同时，集合才对等：
 
-> 无序，不可重复
+> 无序，不可重复，内容相等则=为True
 
 ```python
 In [153]: {1, 2, 3} == {3, 2, 1}
@@ -887,7 +893,9 @@ Out[153]: True
 
 ## 列表、集合和字典推导式
 
-列表推导式是Python最受喜爱的特性之一。它`允许用户方便的从一个集合过滤元素，形成列表，在传递参数的过程中还可以修改元素`。形式如下：
+`列表推导式`是Python最受喜爱的特性之一。它`允许用户方便的从一个集合过滤元素，形成列表，在传递参数的过程中还可以修改元素`。形式如下：
+
+> 元组不能这么用（if可以没有）！如果`(expr for val in collection)`返回的是迭代器不是元组
 
 ```python
 [expr for val in collection if condition]
@@ -915,11 +923,15 @@ Out[155]: ['BAT', 'CAR', 'DOVE', 'PYTHON']
 
 用相似的方法，还可以`推导集合和字典`。字典的推导式如下所示：
 
+> `d = {key: val for val,key in enumerate(strings)}`
+
 ```python
 dict_comp = {key-expr : value-expr for value in collection if condition}
 ```
 
 集合的推导式与列表很像，只不过用的是尖括号：
+
+> 集合和字典也可以这么用！
 
 ```python
 set_comp = {expr for value in collection if condition}
