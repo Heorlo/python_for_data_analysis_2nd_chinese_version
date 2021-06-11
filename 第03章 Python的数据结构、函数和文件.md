@@ -895,7 +895,9 @@ Out[153]: True
 
 `列表推导式`是Python最受喜爱的特性之一。它`允许用户方便的从一个集合过滤元素，形成列表，在传递参数的过程中还可以修改元素`。形式如下：
 
-> 元组不能这么用（if可以没有）！如果`(expr for val in collection)`返回的是迭代器不是元组
+> 列表推导式，集合推导式，字典推导式
+>
+> 元组不能这么用！如果`(expr for val in collection)`返回的是迭代器不是元组
 
 ```python
 [expr for val in collection if condition]
@@ -926,7 +928,7 @@ Out[155]: ['BAT', 'CAR', 'DOVE', 'PYTHON']
 > `d = {key: val for val,key in enumerate(strings)}`
 
 ```python
-dict_comp = {key-expr : value-expr for value in collection if condition}
+dict_comp = {key_expr : value_expr for value in collection if condition}
 ```
 
 集合的推导式与列表很像，只不过用的是尖括号：
@@ -1239,7 +1241,7 @@ West virginia
 
 Python支持一种被称为匿名的、或lambda函数。它仅由单条语句组成，该语句的结果就是返回值。它是通过lambda关键字定义的，这个关键字没有别的含义，仅仅是说“我们正在声明的是一个匿名函数”。
 
-> lambda函数可以和map连用，提供一种方便的定义简单函数的方法，map(x,lambda x: x * 2)，对x数组中的每个数字，返回 * 2之后的结果
+> lambda函数可以和map连用，提供一种方便的定义简单函数的方法，map(lambda x: x * 2, x)，对x数组中的每个数字，返回 * 2之后的结果
 
 ```python
 def short_function(x):
@@ -1290,13 +1292,17 @@ def add_numbers(x, y):
 
 通过这个函数，我们可以派生出一个新的只有一个参数的函数——add_five，它用于对其参数加5：
 
+> 我觉得这个也很好用欸
+
 ```python
 add_five = lambda y: add_numbers(5, y)
 ```
 
 add_numbers的第二个参数称为“柯里化的”（curried）。这里没什么特别花哨的东西，因为我们其实就只是定义了一个可以调用现有函数的新函数而已。内置的functools模块可以用partial函数将此过程简化：
 
-> 使用以前的函数生成新的函数，，，，python真的太强大了，partial
+> 使用以前的函数生成新的函数，，，，python真的太强大了，`partial` 
+>
+> 这个也挺好用啦
 
 ```python
 from functools import partial
@@ -1329,6 +1335,8 @@ Out[183]: <dict_keyiterator at 0x7fbbd5a9f908>
 ```
 
 `迭代器是一种特殊对象，它可以在诸如for循环之类的上下文中向Python解释器输送对象`。大部分能接受列表之类的对象的方法也都可以接受任何可迭代对象。比如min、max、sum等内置方法以及list、tuple等类型构造器：
+
+> 使用list等可以获取迭代器内容？
 
 ```python
 In [184]: list(dict_iterator)
@@ -1369,6 +1377,8 @@ Generating squares from 1 to 100
 另一种更简洁的构造生成器的方法是使用生成器表达式（generator expression）。这是一种类似于列表、字典、集合推导式的生成器。其创建方式为，把列表推导式两端的方括号改成圆括号：
 
 > [xx for xx in xx]生成列表，(xx for xx in xx)生成迭代器
+>
+> 好吧也不知道能用在哪
 
 ```python
 In [189]: gen = (x ** 2 for x in range(100))
@@ -1399,6 +1409,8 @@ Out[192]: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
 ## itertools模块
 
 标准库itertools模块中有一组用于许多常见数据算法的生成器。例如，groupby可以接受任何序列和一个函数。它根据函数的返回值对序列中的连续元素进行分组。下面是一个例子：
+
+> groupby ，根据函数返回值进行分组
 
 ```python
 In [193]: import itertools
