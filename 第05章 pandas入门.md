@@ -1,6 +1,6 @@
-pandas是本书后续内容的首选库。它含有使数据清洗和分析工作变得更快更简单的数据结构和操作工具。pandas经常和其它工具一同使用，如数值计算工具NumPy和SciPy，分析库statsmodels和scikit-learn，和数据可视化库matplotlib。pandas是基于NumPy数组构建的，特别是基于数组的函数和不使用for循环的数据处理。
+pandas是本书后续内容的首选库。它含有使数据清洗和分析工作变得更快更简单的数据结构和操作工具。pandas经常和其它工具一同使用，如数值计算工具NumPy和SciPy，分析库statsmodels和scikit-learn，和数据可视化库matplotlib。`pandas是基于NumPy数组构建的，特别是基于数组的函数和不使用for循环的数据处理`。
 
-虽然pandas采用了大量的NumPy编码风格，但二者最大的不同是pandas是专门为处理表格和混杂数据设计的。而NumPy更适合处理统一的数值数组数据。
+虽然pandas采用了大量的NumPy编码风格，但二者最大的不同是`pandas是专门为处理表格和混杂数据设计`的。而`NumPy更适合处理统一的数值数组数据`。
 
 自从2010年pandas开源以来，pandas逐渐成长为一个非常大的库，应用于许多真实案例。开发者社区已经有了800个独立的贡献者，他们在解决日常数据问题的同时为这个项目提供贡献。
 
@@ -99,7 +99,7 @@ c      20.085537
 dtype: float64
 ```
 
-还可以将Series看成是一个定长的有序字典，因为它是索引值到数据值的一个映射。它可以用在许多原本需要字典参数的函数中：
+还可以将Series看成是一个`定长的有序字典`，因为它是索引值到数据值的一个映射。它可以用在许多原本需要字典参数的函数中：
 ```python
 In [24]: 'b' in obj2
 Out[24]: True
@@ -123,7 +123,7 @@ Utah       5000
 dtype: int64
 ```
 
-如果只传入一个字典，则结果Series中的索引就是原字典的键（有序排列）。你可以传入排好序的字典的键以改变顺序：
+如果只传入一个字典，则结果Series中的索引就是原字典的键（有序排列）。你可以`传入排好序的字典的键以改变顺序`：
 ```python
 In [29]: states = ['California', 'Ohio', 'Oregon', 'Texas']
 
@@ -138,9 +138,9 @@ Texas         71000.0
 dtype: float64
 ```
 
-在这个例子中，sdata中跟states索引相匹配的那3个值会被找出来并放到相应的位置上，但由于"California"所对应的sdata值找不到，所以其结果就为NaN（即“非数字”（not a number），在pandas中，它用于表示缺失或NA值）。因为‘Utah’不在states中，它被从结果中除去。
+在这个例子中，sdata中跟states索引相匹配的那3个值会被找出来并放到相应的位置上，但由于"California"所`对应的sdata值找不到，所以其结果就为NaN`（即“非数字”（not a number），在pandas中，它用于表示缺失或NA值）。因为‘Utah’不在states中，它被从结果中除去。
 
-我将使用缺失（missing）或NA表示缺失数据。pandas的isnull和notnull函数可用于检测缺失数据：
+我将使用缺失（missing）或NA表示缺失数据。pandas的`isnull`和`notnull`函数可用于检测缺失数据：
 ```python
 In [32]: pd.isnull(obj4)
 Out[32]: 
@@ -159,7 +159,7 @@ Texas          True
 dtype: bool
 ```
 
-Series也有类似的实例方法：
+Series`也有类似的实例方法`：
 ```python
 In [34]: obj4.isnull()
 Out[34]: 
@@ -172,7 +172,7 @@ dtype: bool
 
 我将在第7章详细讲解如何处理缺失数据。
 
-对于许多应用而言，Series最重要的一个功能是，它会根据运算的索引标签自动对齐数据：
+对于许多应用而言，Series最重要的一个功能是，它会`根据运算的索引标签自动对齐数据`：
 ```python
 In [35]: obj3
 Out[35]: 
@@ -202,7 +202,10 @@ dtype: float64
 
 数据对齐功能将在后面详细讲解。如果你使用过数据库，你可以认为是类似join的操作。
 
-Series对象本身及其索引都有一个name属性，该属性跟pandas其他的关键功能关系非常密切：
+Series`对象本身及其索引`都有一个name属性，该属性跟pandas其他的关键功能关系非常密切：
+
+>  value 值没有！
+
 ```python
 In [38]: obj4.name = 'population'
 
@@ -218,7 +221,7 @@ Texas         71000.0
 Name: population, dtype: float64
 ```
 
-Series的索引可以通过赋值的方式就地修改：
+Series的索引可以 `通过赋值的方式就地修改`：
 ```python
 In [41]: obj
 Out[41]: 
@@ -240,7 +243,7 @@ dtype: int64
 ```
 
 ## DataFrame
-DataFrame是一个表格型的数据结构，它含有一组有序的列，每列可以是不同的值类型（数值、字符串、布尔值等）。DataFrame既有行索引也有列索引，它可以被看做由Series组成的字典（共用同一个索引）。DataFrame中的数据是以一个或多个二维块存放的（而不是列表、字典或别的一维数据结构）。有关DataFrame内部的技术细节远远超出了本书所讨论的范围。
+DataFrame是一个`表格型`的数据结构，它含有`一组`有序的`列`，每列可以是不同的值类型（数值、字符串、布尔值等）。DataFrame既有行索引也有列索引，它可以被看做由Series组成的字典（共用同一个索引）。DataFrame中的数据是以一个或多个二维块存放的（而不是列表、字典或别的一维数据结构）。有关DataFrame内部的技术细节远远超出了本书所讨论的范围。
 
 >笔记：虽然DataFrame是以二维结构保存数据的，但你仍然可以轻松地将其表示为更高维度的数据（层次化索引的表格型结构，这是pandas中许多高级数据处理功能的关键要素，我们会在第8章讨论这个问题）。
 
@@ -279,7 +282,7 @@ Out[46]:
 4  2.9  Nevada  2002
 ```
 
-如果指定了列序列，则DataFrame的列就会按照指定顺序进行排列：
+如果`指定了列序列`，则DataFrame的列就会`按照指定顺序进行排列`：
 ```python
 In [47]: pd.DataFrame(data, columns=['year', 'state', 'pop'])
 Out[47]: 
@@ -293,6 +296,7 @@ Out[47]:
 ```
 
 如果传入的列在数据中找不到，就会在结果中产生缺失值：
+> index指定行索引，columns指定列索引
 ```python
 In [48]: frame2 = pd.DataFrame(data, columns=['year', 'state', 'pop', 'debt'],
    ....:                       index=['one', 'two', 'three', 'four',
@@ -312,7 +316,8 @@ In [50]: frame2.columns
 Out[50]: Index(['year', 'state', 'pop', 'debt'], dtype='object')
 ```
 
-通过类似字典标记的方式或属性的方式，可以将DataFrame的列获取为一个Series：
+通过类似`字典标记`的方式或`属性`的方式，可以将`DataFrame的列获取为一个Series`：
+> 可以看成好多个Series组成的？
 ```python
 In [51]: frame2['state']
 Out[51]: 
@@ -340,7 +345,7 @@ frame2[column]适用于任何列的名，但是frame2.column只有在列名是�
 
 注意，返回的Series拥有原DataFrame相同的索引，且其name属性也已经被相应地设置好了。
 
-行也可以通过位置或名称的方式进行获取，比如用loc属性（稍后将对此进行详细讲解）：
+行也可以通过位置或名称的方式进行获取，比如用`loc`属性（稍后将对此进行详细讲解）：
 ```python
 In [53]: frame2.loc['three']
 Out[53]: 
@@ -351,7 +356,7 @@ debt      NaN
 Name: three, dtype: object
 ```
 
-列可以通过赋值的方式进行修改。例如，我们可以给那个空的"debt"列赋上一个标量值或一组值：
+列可以`通过赋值的方式进行修改`。例如，我们可以给那个空的"debt"列赋上一个标量值或一组值：
 ```python
 In [54]: frame2['debt'] = 16.5
 
@@ -378,7 +383,7 @@ five   2002  Nevada  2.9   4.0
 six    2003  Nevada  3.2   5.0
 ```
 
-将列表或数组赋值给某个列时，其长度必须跟DataFrame的长度相匹配。如果赋值的是一个Series，就会精确匹配DataFrame的索引，所有的空位都将被填上缺失值：
+将`列表或数组`赋值给某个列时，其`长度`必须跟DataFrame的长度相匹配。如果赋值的是一个Series，就会`精确匹配DataFrame的索引，所有的空位都将被填上缺失值`：
 ```python
 In [58]: val = pd.Series([-1.2, -1.5, -1.7], index=['two', 'four', 'five'])
 
@@ -395,7 +400,7 @@ five   2002  Nevada  2.9  -1.7
 six    2003  Nevada  3.2   NaN
 ```
 
-为不存在的列赋值会创建出一个新列。关键字del用于删除列。
+为`不存在的列赋值会创建出一个新列`。关键字del用于删除列。
 
 作为del的例子，我先添加一个新的布尔值的列，state是否为'Ohio'：
 ```python
@@ -412,7 +417,8 @@ five   2002  Nevada  2.9  -1.7    False
 six    2003  Nevada  3.2   NaN    False
 ```
 
->注意：不能用frame2.eastern创建新的列。
+> 注意：不能用frame2.eastern创建新的列。
+> 那还是多用frame2['xxxx'] 吧
 
 del方法可以用来删除这列：
 ```python
@@ -430,7 +436,7 @@ In [65]: pop = {'Nevada': {2001: 2.4, 2002: 2.9},
 ....:        'Ohio': {2000: 1.5, 2001: 1.7, 2002: 3.6}}
 ```
 
-如果嵌套字典传给DataFrame，pandas就会被解释为：外层字典的键作为列，内层键则作为行索引：
+如果嵌套字典传给DataFrame，pandas就会被解释为：`外层字典的键作为列，内层键则作为行索引`：
 ```python
 In [66]: frame3 = pd.DataFrame(pop)
 
@@ -442,7 +448,7 @@ Out[67]:
 2002     2.9   3.6
 ```
 
-你也可以使用类似NumPy数组的方法，对DataFrame进行转置（交换行和列）：
+你也可以使用类似NumPy数组的方法，对DataFrame进行`转置`（交换行和列）：
 ```python
 In [68]: frame3.T
 Out[68]: 
@@ -451,7 +457,7 @@ Nevada   NaN   2.4   2.9
 Ohio     1.5   1.7   3.6
 ```
 
-内层字典的键会被合并、排序以形成最终的索引。如果明确指定了索引，则不会这样：
+内层字典的键会被`合并、排序`以形成最终的索引。如果明确指定了索引，则不会这样：
 ```python
 In [69]: pd.DataFrame(pop, index=[2001, 2002, 2003])
 Out[69]: 
@@ -477,7 +483,7 @@ Out[71]:
 
 ![](http://upload-images.jianshu.io/upload_images/7178691-106835b28c0cea5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-如果设置了DataFrame的index和columns的name属性，则这些信息也会被显示出来：
+如果设置了`DataFrame的index和columns的name属性`，则这些信息也会被显示出来：
 ```python
 In [72]: frame3.index.name = 'year'; frame3.columns.name = 'state'
 
@@ -490,7 +496,7 @@ year
 2002      2.9   3.6
 ```
 
-跟Series一样，values属性也会以二维ndarray的形式返回DataFrame中的数据：
+跟Series一样，`values`属性也会以二维ndarray的形式返回DataFrame中的数据：
 ```python
 In [74]: frame3.values
 Out[74]: 
@@ -499,7 +505,7 @@ array([[ nan,  1.5],
        [ 2.9,  3.6]])
 ```
 
-如果DataFrame各列的数据类型不同，则值数组的dtype就会选用能兼容所有列的数据类型：
+如果DataFrame各列的数据类型不同，则值数组的`dtype就会选用能兼容所有列`的数据类型：
 ```python
 In [75]: frame2.values
 Out[75]:
@@ -525,7 +531,7 @@ In [79]: index[1:]
 Out[79]: Index(['b', 'c'], dtype='object')
 ```
 
-Index对象是不可变的，因此用户不能对其进行修改：
+Index对象是`不可变`的，因此用户不能对其进行修改：
 ```python
 index[1] = 'd'  # TypeError
 ```
@@ -588,8 +594,8 @@ Out[90]: Index(['foo', 'foo', 'bar', 'bar'], dtype='object')
 # 5.2 基本功能
 本节中，我将介绍操作Series和DataFrame中的数据的基本手段。后续章节将更加深入地挖掘pandas在数据分析和处理方面的功能。本书不是pandas库的详尽文档，主要关注的是最重要的功能，那些不大常用的内容（也就是那些更深奥的内容）就交给你自己去摸索吧。
 
-## 重新索引
-pandas对象的一个重要方法是reindex，其作用是创建一个新对象，它的数据符合新的索引。看下面的例子：
+## 重新索引reindex
+pandas对象的一个重要方法是`reindex`，其作用是创建一个新对象，它的数据符合新的索引。看下面的例子：
 ```python
 In [91]: obj = pd.Series([4.5, 7.2, -5.3, 3.6], index=['d', 'b', 'a', 'c'])
 
@@ -617,6 +623,9 @@ dtype: float64
 ```
 
 对于时间序列这样的有序数据，重新索引时可能需要做一些插值处理。method选项即可达到此目的，例如，使用ffill可以实现前向值填充：
+
+>  前向值填充，就是缺失值用它前面的值填充，就是相当于每个数字向后填充
+
 ```python
 In [95]: obj3 = pd.Series(['blue', 'purple', 'yellow'], index=[0, 2, 4])
 
@@ -678,8 +687,11 @@ d      7   NaN           8
 
 ![](http://upload-images.jianshu.io/upload_images/7178691-efa3dbd4b83c61ec.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 丢弃指定轴上的项
-丢弃某条轴上的一个或多个项很简单，只要有一个索引数组或列表即可。由于需要执行一些数据整理和集合逻辑，所以drop方法返回的是一个在指定轴上删除了指定值的新对象：
+## 丢弃指定轴上的项 drop
+丢弃某条轴上的一个或多个项很简单，只要有一个索引数组或列表即可。由于需要执行一些数据整理和集合逻辑，所以drop方法返回的是`一个在指定轴上删除了指定值的新对象 `：
+
+> 对返回值的改变不会改变原frame
+
 ```python
 In [105]: obj = pd.Series(np.arange(5.), index=['a', 'b', 'c', 'd', 'e'])
 
@@ -725,7 +737,7 @@ Utah        8    9     10    11
 New York   12   13     14    15
 ```
 
-用标签序列调用drop会从行标签（axis 0）删除值：
+用标签序列调用drop会从`行标签`（axis 0）删除值：
 ```python
 In [112]: data.drop(['Colorado', 'Ohio'])
 Out[112]: 
@@ -734,7 +746,7 @@ Utah        8    9     10    11
 New York   12   13     14    15
 ```
 
-通过传递axis=1或axis='columns'可以删除列的值：
+通过传递`axis=1`或axis='columns'可以`删除列`的值：
 ```python
 In [113]: data.drop('two', axis=1)
 Out[113]: 
@@ -753,7 +765,8 @@ Utah        8     10
 New York   12     14
 ```
 
-许多函数，如drop，会修改Series或DataFrame的大小或形状，可以就地修改对象，不会返回新的对象：
+许多函数，如drop，会修改Series或DataFrame的大小或形状，可以使用 `inplace` 就地修改对象，`不会返回新的对象`：
+
 ```python
 In [115]: obj.drop('c', inplace=True)
 
@@ -766,10 +779,13 @@ e    4.0
 dtype: float64
 ```
 
-小心使用inplace，它会销毁所有被删除的数据。
+> 小心使用inplace，它会销毁所有被删除的数据。
 
 ## 索引、选取和过滤
-Series索引（obj[...]）的工作方式类似于NumPy数组的索引，只不过Series的索引值不只是整数。下面是几个例子：
+Series索引（obj[...]）的工作方式类似于NumPy数组的索引，只不过Series的索引值`不只是整数`。下面是几个例子：
+
+> 还是有整数索引的，注意这个是Series，Data Frame不能直接用整数索引，要配合iloc
+
 ```python
 In [117]: obj = pd.Series(np.arange(4.), index=['a', 'b', 'c', 'd'])
 
@@ -813,7 +829,7 @@ b    1.0
 dtype: float64
 ```
 
-利用标签的切片运算与普通的Python切片运算不同，其末端是包含的：
+利用`标签的切片运算与普通的Python切片运算不同，其末端是包含的`：
 ```python
 In [125]: obj['b':'c']
 Out[125]:
@@ -836,6 +852,9 @@ dtype: float64
 ```
 
 用一个值或序列对DataFrame进行索引其实就是获取一个或多个列：
+
+> data[['one', 'two']] 取两列，frame不支持直接[xxx, xxx]类型的索引，不能在一个轴上索引之后在另一个轴上索引！
+
 ```python
 In [128]: data = pd.DataFrame(np.arange(16).reshape((4, 4)),
    .....:                     index=['Ohio', 'Colorado', 'Utah', 'New York'],
@@ -867,6 +886,9 @@ New York     14   12
 ```
 
 这种索引方式有几个特殊的情况。首先通过切片或布尔型数组选取数据：
+
+> 简单的索引是索引的列，切片索引索引行
+
 ```python
 In [132]: data[:2]
 Out[132]: 
@@ -882,7 +904,9 @@ Utah        8    9     10    11
 New York   12   13     14    15
 ```
 
-选取行的语法data[:2]十分方便。向[ ]传递单一的元素或列表，就可选择列。
+`选取行`的语法data[:2]十分方便。向[ ]传递单一的元素或列表，就可选择列。
+
+>  直接写单个元素或者序列索引的是列，切片索引的是行，天啊为什么要这样设计
 
 另一种用法是通过布尔型DataFrame（比如下面这个由标量比较运算得出的）进行索引：
 ```python
@@ -906,11 +930,13 @@ New York   12   13     14    15
 ```
 
 这使得DataFrame的语法与NumPy二维数组的语法很像。
+>   何止是像，简直一摸一样
 
 ## 用loc和iloc进行选取
 对于DataFrame的行的标签索引，我引入了特殊的标签运算符loc和iloc。它们可以让你用类似NumPy的标记，使用轴标签（loc）或整数索引（iloc），从DataFrame选择行和列的子集。
 
 作为一个初步示例，让我们通过标签选择一行和多列：
+> loc每个轴上都必须是标签, iloc每个轴都必须是数字，感觉后一个比较常用
 ```python
 In [137]: data.loc['Colorado', ['two', 'three']]
 Out[137]: 
@@ -944,6 +970,9 @@ Utah        11    8    9
 ```
 
 这两个索引函数也适用于一个标签或多个标签的切片：
+
+>  也可以用切片和布尔数组
+
 ```python
 In [141]: data.loc[:'Utah', 'two']
 Out[141]: 
@@ -974,7 +1003,7 @@ ser = pd.Series(np.arange(3.))
 ser
 ser[-1]
 ```
-
+> 这种时候索引为整数索引，-1被识别为按照标签索引而不是整数，所以-1会出错，因为索引只有0，1，2
 这里，pandas可以勉强进行整数索引，但是会导致小bug。我们有包含0,1,2的索引，但是引入用户想要的东西（基于标签或位置的索引）很难：
 ```python
 In [144]: ser
@@ -985,7 +1014,8 @@ Out[144]:
 dtype: float64
 ```
 
-另外，对于非整数索引，不会产生歧义：
+另外，`对于非整数索引，不会产生歧义`：
+> 对于非整数索引可以用-1等等。。。。因为会按照整数找
 ```python
 In [145]: ser2 = pd.Series(np.arange(3.), index=['a', 'b', 'c'])
 
@@ -994,6 +1024,9 @@ Out[146]: 2.0
 ```
 
 为了进行统一，如果轴索引含有整数，数据选取总会使用标签。为了更准确，请使用loc（标签）或iloc（整数）：
+
+> 天啊，尽量用loc, iloc进行索引，指定是整数还是标签
+ 
 ```python
 In [147]: ser[:1]
 Out[147]: 
@@ -1013,7 +1046,10 @@ dtype: float64
 ```
 
 ## 算术运算和数据对齐
-pandas最重要的一个功能是，它可以对不同索引的对象进行算术运算。在将对象相加时，如果存在不同的索引对，则结果的索引就是该索引对的并集。对于有数据库经验的用户，这就像在索引标签上进行自动外连接。看一个简单的例子：
+pandas最重要的一个功能是，它可以对不同索引的对象进行算术运算。在将对象相加时，如果存在不同的索引对，则结果的索引就是该索引对的 `并集`。对于有数据库经验的用户，这就像在索引标签上进行自动外连接。看一个简单的例子：
+
+> 相加的时候类似数据库的连接，都存在的索引相加，只要有一个不存在的索引就是Nan，其中一个为空值的时候加起来也是空值
+
 ```python
 In [150]: s1 = pd.Series([7.3, -2.5, 3.4, 1.5], index=['a', 'c', 'd', 'e'])
 
@@ -1053,7 +1089,7 @@ dtype: float64
 
 自动的数据对齐操作在不重叠的索引处引入了NA值。缺失值会在算术运算过程中传播。
 
-对于DataFrame，对齐操作会同时发生在行和列上：
+对于DataFrame，`对齐操作会同时发生在行和列上`：
 ```python
 In [155]: df1 = pd.DataFrame(np.arange(9.).reshape((3, 3)), columns=list('bcd'),
    .....:                    index=['Ohio', 'Texas', 'Colorado'])
@@ -1116,7 +1152,7 @@ Out[164]:
 1 NaN NaN
 ```
 
-## 在算术方法中填充值
+## 在算术方法中填充值 fill_value
 在对不同索引的对象进行算术运算时，你可能希望当一个对象中某个轴标签在另一个对象中找不到时填充一个特殊值（比如0）：
 ```python
 In [165]: df1 = pd.DataFrame(np.arange(12.).reshape((3, 4)),
@@ -1154,7 +1190,7 @@ Out[170]:
 3   NaN   NaN   NaN   NaN NaN
 ```
 
-使用df1的add方法，传入df2以及一个fill_value参数：
+使用df1的`add`方法，传入df2以及一个fill_value参数：
 ```python
 In [171]: df1.add(df2, fill_value=0)
 Out[171]: 
@@ -1166,6 +1202,9 @@ Out[171]:
 ```
 
 表5-5列出了Series和DataFrame的算术方法。它们每个都有一个副本，以字母r开头，它会翻转参数。因此这两个语句是等价的：
+
+> a.div(b) = a/b, a.rdiv(b) = b/a，因为1不是dataframe没有div方法，所以需要反转参数
+
 ```python
 In [172]: 1 / df1
 Out[172]: 
@@ -1215,7 +1254,10 @@ array([[ 0.,  0.,  0.,  0.],
        [ 8.,  8.,  8.,  8.]])
 ```
 
-当我们从arr减去arr[0]，每一行都会执行这个操作。这就叫做广播（broadcasting），附录A将对此进行详细讲解。DataFrame和Series之间的运算差不多也是如此：
+当我们从arr减去arr[0]，每一行都会执行这个操作。这就叫做`广播`（broadcasting），附录A将对此进行详细讲解。DataFrame和Series之间的运算差不多也是如此：
+
+> 附录A不看不行了
+
 ```python
 In [179]: frame = pd.DataFrame(np.arange(12.).reshape((4, 3)),
    .....:                      columns=list('bde'),
@@ -1240,6 +1282,7 @@ Name: Utah, dtype: float64
 ```
 
 默认情况下，DataFrame和Series之间的算术运算会将Series的索引匹配到DataFrame的列，然后沿着行一直向下广播：
+> 索引与frame的列名匹配，逐行广播
 ```python
 In [183]: frame - series
 Out[183]: 
@@ -1250,7 +1293,7 @@ Texas   6.0  6.0  6.0
 Oregon  9.0  9.0  9.0
 ```
 
-如果某个索引值在DataFrame的列或Series的索引中找不到，则参与运算的两个对象就会被重新索引以形成并集：
+如果某个索引值在DataFrame的列或Series的索引中找不到，则参与运算的两个对象就会被`重新索引以形成并集`：
 ```python
 In [184]: series2 = pd.Series(range(3), index=['b', 'e', 'f'])
 
@@ -1263,7 +1306,10 @@ Texas   6.0 NaN   9.0 NaN
 Oregon  9.0 NaN  12.0 NaN
 ```
 
-如果你希望匹配行且在列上广播，则必须使用算术运算方法。例如：
+如果你希望匹配行且在列上广播，则必须使用`算术运算方法`。例如：
+
+> 借助算术运算方法并设置axis实现列广播
+
 ```python
 In [186]: series3 = frame['d']
 
@@ -1295,7 +1341,7 @@ Oregon -1.0  0.0  1.0
 传入的轴号就是希望匹配的轴。在本例中，我们的目的是匹配DataFrame的行索引（axis='index' or axis=0）并进行广播。
 
 ## 函数应用和映射
-NumPy的ufuncs（元素级数组方法）也可用于操作pandas对象：
+NumPy的`ufuncs（元素级数组方法）也可用于操作pandas对象`：
 ```python
 In [190]: frame = pd.DataFrame(np.random.randn(4, 3), columns=list('bde'),
    .....:                      index=['Utah', 'Ohio', 'Texas', 'Oregon'])
@@ -1318,6 +1364,7 @@ Oregon  1.246435  1.007189  1.296221
 ```
 
 另一个常见的操作是，将函数应用到由各列或行所形成的一维数组上。DataFrame的apply方法即可实现此功能：
+> 将函数应用在一维数组上用apply
 ```python
 In [193]: f = lambda x: x.max() - x.min()
 
@@ -1332,6 +1379,7 @@ dtype: float64
 这里的函数f，计算了一个Series的最大值和最小值的差，在frame的每列都执行了一次。结果是一个Series，使用frame的列作为索引。
 
 如果传递axis='columns'到apply，这个函数会在每行执行：
+> 我觉得这个是最迷的，有时候对每行执行，有时候对每列执行
 ```python
 In [195]: frame.apply(f, axis='columns')
 Out[195]:
@@ -1357,6 +1405,7 @@ max  1.246435  1.965781  1.393406
 ```
 
 元素级的Python函数也是可以用的。假如你想得到frame中各个浮点值的格式化字符串，使用applymap即可：
+> 将函数应用在每个元素上用applymap
 ```python
 In [198]: format = lambda x: '%.2f' % x
 
@@ -1382,6 +1431,7 @@ Name: e, dtype: object
 
 ## 排序和排名
 根据条件对数据集排序（sorting）也是一种重要的内置运算。要对行或列索引进行排序（按字典顺序），可使用sort_index方法，它将返回一个已排序的新对象：
+>  用sort_index按照索引进行排序，用sort_values按照值进行排序，用axis指定轴
 ```python
 In [201]: obj = pd.Series(range(4), index=['d', 'a', 'b', 'c'])
 
@@ -1716,6 +1766,9 @@ conda install pandas-datareader
 ```
 
 我使用pandas_datareader模块下载了一些股票数据：
+
+> items()返回字典元素集合
+
 ```python
 import pandas_datareader.data as web
 all_data = {ticker: web.get_data_yahoo(ticker)
@@ -1727,7 +1780,7 @@ volume = pd.DataFrame({ticker: data['Volume']
                       for ticker, data in all_data.items()})
 ```
 
->注意：此时Yahoo! Finance已经不存在了，因为2017年Yahoo!被Verizon收购了。参阅pandas-datareader文档，可以学习最新的功能。
+> 注意：此时Yahoo! Finance已经不存在了，因为2017年Yahoo!被Verizon收购了。参阅pandas-datareader文档，可以学习最新的功能。
 
 现在计算价格的百分数变化，时间序列的操作会在第11章介绍：
 ```python
@@ -1744,7 +1797,7 @@ Date
 2016-10-21 -0.003930  0.003011 -0.012474  0.042096
 ```
 
-Series的corr方法用于计算两个Series中重叠的、非NA的、按索引对齐的值的相关系数。与此类似，cov用于计算协方差：
+Series的`corr`方法用于计算两个Series中重叠的、非NA的、按索引对齐的值的`相关系数`。与此类似，`cov`用于计算`协方差`：
 ```python
 In [244]: returns['MSFT'].corr(returns['IBM'])
 Out[244]: 0.49976361144151144
@@ -1753,7 +1806,7 @@ In [245]: returns['MSFT'].cov(returns['IBM'])
 Out[245]: 8.8706554797035462e-05
 ```
 
-因为MSTF是一个合理的Python属性，我们还可以用更简洁的语法选择列：
+因为MSTF是一个合理的`Python属性`，我们还可以用更简洁的语法选择列：
 ```python
 In [246]: returns.MSFT.corr(returns.IBM)
 Out[246]: 0.49976361144151144
